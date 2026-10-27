@@ -1,6 +1,6 @@
 ﻿services:
   - type: worker
-    name: gem-master-engine-new
+    name: valuebuster-master-engine
     env: python
     region: frankfurt
     plan: free
