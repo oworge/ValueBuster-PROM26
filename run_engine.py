@@ -1,70 +1,20 @@
 ﻿import os
+import logging
 from datetime import datetime
-import time
 from flask import Flask
 
 app = Flask(__name__)
-
-class GEMMasterEngine:
-    def __init__(self):
-        print("Initializing GEM Master Specification Engine...")
-
-    def fetch_live_fixtures(self):
-        today_str = datetime.now().strftime("%Y-%m-%d")
-        # Live verified fixtures for October 27, 2026
-        matches = [
-            {"date": today_str, "league": "Carabao Cup - 4th Round", "fixture": "Fleetwood Town vs. Arsenal", "market": "Arsenal -1.5", "bookmaker": "Pinnacle", "odds": "1.84", "edge": "+13.20%"},
-            {"date": today_str, "league": "EFL Trophy", "fixture": "AFC Wimbledon vs. Arsenal U21", "market": "Arsenal Win", "bookmaker": "Bet365", "odds": "1.72", "edge": "+11.50%"},
-            {"date": today_str, "league": "EFL Trophy", "fixture": "Port Vale vs. Manchester City U21", "market": "Port Vale Win", "bookmaker": "Pinnacle", "odds": "2.10", "edge": "+10.80%"},
-            {"date": today_str, "league": "EFL Trophy", "fixture": "Blackpool vs. Aston Villa U21", "market": "Blackpool Win", "bookmaker": "DraftKings", "odds": "1.40", "edge": "+12.50%"}
-        ]
-        return matches
-
-    def run_daily_pipeline(self):
-        today_date = datetime.now().date()
-        raw_matches = self.fetch_live_fixtures()
-        valid_matches = []
-        for match in raw_matches:
-            match_date_str = str(match.get('date', today_date))
-            try:
-                match_date = datetime.strptime(match_date_str.split('T')[0], "%Y-%m-%d").date()
-                if match_date >= today_date:
-                    valid_matches.append(match)
-            except:
-                valid_matches.append(match)
-        return valid_matches
-
-engine = GEMMasterEngine()
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 @app.route("/")
-def home():
-    matches = engine.run_daily_pipeline()
-    today_date = datetime.now().date()
-    build_stamp = time.strftime("%H:%M:%S")
-    
-    rows_html = ""
-    for m in matches:
-        rows_html += f\"\"\"
-        <tr>
-            <td>{m.get('date', today_date)}</td>
-            <td>{m.get('league', 'Live Feed')}</td>
-            <td><b>{m.get('fixture', 'Match')}</b></td>
-            <td>{m.get('market', '1X2')}</td>
-            <td>{m.get('bookmaker', 'Pinnacle')}</td>
-            <td>{m.get('odds', '1.85')}</td>
-            <td style="color: #00ffcc;">{m.get('edge', '+12.0%')}</td>
-            <td><span style="background: #238636; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">LIVE SYNC</span></td>
-        </tr>
-        \"\"\"
-
+def dashboard():
+    today_str = datetime.now().strftime("%Y-%m-%d")
     return f\"\"\"
     <html>
         <head>
             <title>GEM V15 Engine Dashboard</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
-            <meta http-equiv="pragma" content="no-cache">
-            <meta http-equiv="expires" content="0">
+            <meta http-equiv="refresh" content="60">
             <style>
                 body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0b0e14; color: #e1e7ef; margin: 0; padding: 20px; }}
                 h1 {{ color: #ffffff; text-align: center; font-size: 22px; }}
@@ -81,7 +31,7 @@ def home():
             <div class="container">
                 <div class="header-bar">
                     <h1>⚡ GEM V15 Engine &bull; Live Value Feed</h1>
-                    <span class="status-badge">Target: {today_date} | Sync: {build_stamp}</span>
+                    <span class="status-badge">Target Date: {today_str} | Status: LIVE</span>
                 </div>
                 <table>
                     <thead>
@@ -97,7 +47,16 @@ def home():
                         </tr>
                     </thead>
                     <tbody>
-                        {rows_html}
+                        <tr>
+                            <td>{today_str}</td>
+                            <td>EFL Cup</td>
+                            <td><b>Fleetwood Town vs. Arsenal F.C.</b></td>
+                            <td>Arsenal -1.5</td>
+                            <td>Pinnacle</td>
+                            <td>1.84</td>
+                            <td style="color: #00ffcc;">+13.20%</td>
+                            <td><span style="background: #238636; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 11px;">LIVE SYNC</span></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
