@@ -1,7 +1,0 @@
-﻿services:
-  - type: web
-    name: gem-master-engine
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python run_engine.py
-    plan: free
