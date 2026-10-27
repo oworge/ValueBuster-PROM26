@@ -1,6 +1,6 @@
 ﻿services:
   - type: worker
-    name: gem-master-engine
+    name: gem-master-engine-new
     env: python
     region: frankfurt
     plan: free
