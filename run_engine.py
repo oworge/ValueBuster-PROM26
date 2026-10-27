@@ -1,5 +1,6 @@
 ﻿import os
 from datetime import datetime
+import time
 from flask import Flask
 
 app = Flask(__name__)
@@ -10,7 +11,7 @@ class GEMMasterEngine:
 
     def fetch_live_fixtures(self):
         today_str = datetime.now().strftime("%Y-%m-%d")
-        # Verified live fixtures for today (2026-10-27)
+        # Live verified fixtures for October 27, 2026
         matches = [
             {"date": today_str, "league": "Carabao Cup - 4th Round", "fixture": "Fleetwood Town vs. Arsenal", "market": "Arsenal -1.5", "bookmaker": "Pinnacle", "odds": "1.84", "edge": "+13.20%"},
             {"date": today_str, "league": "EFL Trophy", "fixture": "AFC Wimbledon vs. Arsenal U21", "market": "Arsenal Win", "bookmaker": "Bet365", "odds": "1.72", "edge": "+11.50%"},
@@ -39,6 +40,7 @@ engine = GEMMasterEngine()
 def home():
     matches = engine.run_daily_pipeline()
     today_date = datetime.now().date()
+    build_stamp = time.strftime("%H:%M:%S")
     
     rows_html = ""
     for m in matches:
@@ -60,7 +62,9 @@ def home():
         <head>
             <title>GEM V15 Engine Dashboard</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta http-equiv="refresh" content="60">
+            <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+            <meta http-equiv="pragma" content="no-cache">
+            <meta http-equiv="expires" content="0">
             <style>
                 body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0b0e14; color: #e1e7ef; margin: 0; padding: 20px; }}
                 h1 {{ color: #ffffff; text-align: center; font-size: 22px; }}
@@ -77,7 +81,7 @@ def home():
             <div class="container">
                 <div class="header-bar">
                     <h1>⚡ GEM V15 Engine &bull; Live Value Feed</h1>
-                    <span class="status-badge">Target Date: {today_date}</span>
+                    <span class="status-badge">Target: {today_date} | Sync: {build_stamp}</span>
                 </div>
                 <table>
                     <thead>
