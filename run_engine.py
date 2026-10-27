@@ -8,11 +8,32 @@ class GEMMasterEngine:
     def __init__(self):
         print("Initializing GEM Master Specification Engine...")
 
+    def fetch_raw_fixtures(self):
+        # Placeholder or connector to your fixture provider
+        # Ensure your fixture items have a 'date' key in 'YYYY-MM-DD' format
+        return []
+
     def run_daily_pipeline(self):
         today_date = datetime.now().date()
         print(f"Initializing GEM Master Specification Engine for target date: {today_date}")
-        print("GEM Master Engine V15.0 initialized successfully in cloud mode.")
-        return f"GEM Master Engine V15.0 Active - Target Date: {today_date}"
+        
+        raw_matches = self.fetch_raw_fixtures()
+        
+        # STRICT DATE FILTERING: Drop anything before today's date
+        valid_matches = []
+        for match in raw_matches:
+            match_date_str = match.get('date')
+            if match_date_str:
+                try:
+                    match_date = datetime.strptime(str(match_date_str).split('T')[0], "%Y-%m-%d").date()
+                    if match_date >= today_date:
+                        valid_matches.append(match)
+                except Exception as e:
+                    # Skip malformed dates
+                    continue
+
+        print(f"Filtered fixtures: Keeping {len(valid_matches)} active games for today onwards.")
+        return f"GEM Master Engine V15.0 Active - Target Date: {today_date} | Active Games: {len(valid_matches)}"
 
 engine = GEMMasterEngine()
 
