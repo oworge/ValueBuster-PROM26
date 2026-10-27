@@ -1,15 +1,7 @@
 ﻿services:
-  - type: worker
-    name: valuebuster-master-engine
+  - type: web
+    name: gem-master-engine
     env: python
-    region: frankfurt
-    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: python run_engine.py
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.12
-      - key: TELEGRAM_BOT_TOKEN
-        sync: false
-      - key: TELEGRAM_CHAT_ID
-        sync: false
+    plan: free
