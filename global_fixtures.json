@@ -1,0 +1,106 @@
+[
+    {
+        "id":  1,
+        "competition":  "DFB Pokal",
+        "away":  "Werder Bremen",
+        "home":  "Borussia Dortmund",
+        "time":  "19:45",
+        "status":  "Upcoming"
+    },
+    {
+        "id":  2,
+        "competition":  "DFB Pokal",
+        "away":  "Eintracht Frankfurt",
+        "home":  "Hamburger SV",
+        "time":  "17:00",
+        "status":  "Live / HT"
+    },
+    {
+        "id":  3,
+        "competition":  "DFB Pokal",
+        "away":  "RB Leipzig",
+        "home":  "Rot-Weiss Essen",
+        "time":  "17:00",
+        "status":  "Live / HT"
+    },
+    {
+        "id":  4,
+        "competition":  "DFB Pokal",
+        "away":  "Mainz 05",
+        "home":  "VfL Bochum",
+        "time":  "17:00",
+        "status":  "Live / HT"
+    },
+    {
+        "id":  5,
+        "competition":  "EFL Cup",
+        "away":  "Peterborough United",
+        "home":  "Bradford City",
+        "time":  "19:45",
+        "status":  "Upcoming"
+    },
+    {
+        "id":  6,
+        "competition":  "EFL Cup",
+        "away":  "Arsenal",
+        "home":  "Fleetwood Town",
+        "time":  "20:00",
+        "status":  "Upcoming"
+    },
+    {
+        "id":  7,
+        "competition":  "Serie A",
+        "away":  "Lazio",
+        "home":  "Sassuolo",
+        "time":  "17:30",
+        "status":  "Live"
+    },
+    {
+        "id":  8,
+        "competition":  "Serie A",
+        "away":  "Cagliari",
+        "home":  "AS Roma",
+        "time":  "19:45",
+        "status":  "Upcoming"
+    },
+    {
+        "id":  9,
+        "competition":  "Serie A",
+        "away":  "Como 1907",
+        "home":  "Torino",
+        "time":  "19:45",
+        "status":  "Upcoming"
+    },
+    {
+        "id":  10,
+        "competition":  "Copa del Rey",
+        "away":  "Girona",
+        "home":  "CD Cuarte",
+        "time":  "17:30",
+        "status":  "Live"
+    },
+    {
+        "id":  11,
+        "competition":  "Copa del Rey",
+        "away":  "Espanyol",
+        "home":  "Sestao River",
+        "time":  "18:00",
+        "status":  "Upcoming"
+    },
+    {
+        "id":  12,
+        "competition":  "Copa del Rey",
+        "away":  "Villarreal",
+        "home":  "CD Manacor",
+        "time":  "20:00",
+        "status":  "Upcoming"
+    },
+    {
+        "id":  13,
+        "competition":  "Copa del Rey",
+        "away":  "Rayo Vallecano",
+        "home":  "Recreativo Huelva",
+        "time":  "20:00",
+        "status":  "Upcoming"
+    }
+]
